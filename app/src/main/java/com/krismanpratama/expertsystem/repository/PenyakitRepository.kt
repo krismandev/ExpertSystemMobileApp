@@ -1,11 +1,6 @@
 package com.krismanpratama.expertsystem.repository
 
-import android.app.Application
-import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.krismanpratama.expertsystem.data.entity.Penyakit
 import com.krismanpratama.expertsystem.data.room.PenyakitDao
 import com.krismanpratama.expertsystem.data.room.SispakDB
@@ -30,7 +25,8 @@ class PenyakitRepository(private val db: SispakDB) {
         mPenyakitDao = db.penyakitDao()
     }
 
-    fun getAllPenyakit(): LiveData<List<Penyakit>> = mPenyakitDao.getPenyakit()
+    fun getAllPenyakit(): LiveData<List<Penyakit>> = mPenyakitDao.getAllPenyakit()
+    fun getPenyakit(penyakitId: Int):LiveData<Penyakit> = mPenyakitDao.getPenyakit(penyakitId)
 
     fun addPenyakit(penyakit: Penyakit){
         CoroutineScope(Dispatchers.IO).launch {

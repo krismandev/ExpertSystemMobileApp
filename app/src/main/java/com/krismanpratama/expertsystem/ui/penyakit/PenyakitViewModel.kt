@@ -10,4 +10,6 @@ class PenyakitViewModel(private val mPenyakitRepository: PenyakitRepository) : V
 
     fun getAllPenyakit() : LiveData<List<Penyakit>> = mPenyakitRepository.getAllPenyakit()
 
+    fun deletePenyakit(penyakit: Penyakit) = mPenyakitRepository.deletePenyakit(penyakit)
+
 }

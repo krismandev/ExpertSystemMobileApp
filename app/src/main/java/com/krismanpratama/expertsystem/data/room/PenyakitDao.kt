@@ -16,5 +16,8 @@ interface PenyakitDao {
     suspend fun deletePenyakit(penyakit: Penyakit)
 
     @Query("SELECT * FROM penyakit")
-    fun getPenyakit(): LiveData<List<Penyakit>>
+    fun getAllPenyakit(): LiveData<List<Penyakit>>
+
+    @Query("SELECT * FROM penyakit WHERE penyakit.id= :id")
+    fun getPenyakit(id: Int): LiveData<Penyakit>
 }
