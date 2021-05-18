@@ -9,14 +9,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
-class PenyakitRepository(private val db: SispakDB) {
+class SispakRepository(private val db: SispakDB) {
 
     companion object {
         @Volatile
-        private var instance: PenyakitRepository? = null
-        fun getInstance(sispakDB: SispakDB): PenyakitRepository =
+        private var instance: SispakRepository? = null
+        fun getInstance(sispakDB: SispakDB): SispakRepository =
             instance ?: synchronized(this) {
-                instance ?: PenyakitRepository(sispakDB).apply { instance = this }
+                instance ?: SispakRepository(sispakDB).apply { instance = this }
             }
     }
 

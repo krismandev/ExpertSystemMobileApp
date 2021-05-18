@@ -1,15 +1,14 @@
 package com.krismanpratama.expertsystem.ui.penyakit
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.krismanpratama.expertsystem.data.entity.Penyakit
-import com.krismanpratama.expertsystem.repository.PenyakitRepository
+import com.krismanpratama.expertsystem.repository.SispakRepository
 
-class PenyakitViewModel(private val mPenyakitRepository: PenyakitRepository) : ViewModel() {
+class PenyakitViewModel(private val mSispakRepository: SispakRepository) : ViewModel() {
 
-    fun getAllPenyakit() : LiveData<List<Penyakit>> = mPenyakitRepository.getAllPenyakit()
+    fun getAllPenyakit() : LiveData<List<Penyakit>> = mSispakRepository.getAllPenyakit()
 
-    fun deletePenyakit(penyakit: Penyakit) = mPenyakitRepository.deletePenyakit(penyakit)
+    fun deletePenyakit(penyakit: Penyakit) = mSispakRepository.deletePenyakit(penyakit)
 
 }

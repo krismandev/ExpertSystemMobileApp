@@ -1,12 +1,11 @@
 package com.krismanpratama.expertsystem.ui.penyakit
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.krismanpratama.expertsystem.data.entity.Penyakit
-import com.krismanpratama.expertsystem.repository.PenyakitRepository
+import com.krismanpratama.expertsystem.repository.SispakRepository
 
-class AddPenyakitViewModel(private val mPenyakitRepository: PenyakitRepository) : ViewModel(){
+class AddPenyakitViewModel(private val mSispakRepository: SispakRepository) : ViewModel(){
 
     private var penyakitId = 0
     fun setSelectedPenyakit(penyakitId: Int){
@@ -14,18 +13,18 @@ class AddPenyakitViewModel(private val mPenyakitRepository: PenyakitRepository) 
     }
 
     fun addPenyakit(penyakit: Penyakit){
-        mPenyakitRepository.addPenyakit(penyakit)
+        mSispakRepository.addPenyakit(penyakit)
     }
 
     fun updatePenyakit(penyakit: Penyakit){
-        mPenyakitRepository.updatePenyakit(penyakit)
+        mSispakRepository.updatePenyakit(penyakit)
     }
 
     fun deletePenyakit(penyakit: Penyakit){
-        mPenyakitRepository.deletePenyakit(penyakit)
+        mSispakRepository.deletePenyakit(penyakit)
     }
 
     fun getPenyakit(): LiveData<Penyakit>{
-        return mPenyakitRepository.getPenyakit(penyakitId)
+        return mSispakRepository.getPenyakit(penyakitId)
     }
 }
