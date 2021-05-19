@@ -16,4 +16,6 @@
     <string name="tambah">Tambah</string>
     <string name="update">Update</string>
     <string name="simpan">Simpan</string>
+    <string name="nama_gejala">Nama gejala</string>
+    <string name="keyakinan">Tingkat Keyakinan</string>
 </resources>
