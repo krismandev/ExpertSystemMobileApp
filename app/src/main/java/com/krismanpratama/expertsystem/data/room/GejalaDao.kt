@@ -19,6 +19,7 @@ interface GejalaDao {
     @Query("SELECT * FROM gejala")
     fun getAllGejala(): LiveData<List<Gejala>>
 
+
     @Query("SELECT * FROM gejala WHERE gejala.id= :id")
     fun getGejala(id: Int): LiveData<Gejala>
 }

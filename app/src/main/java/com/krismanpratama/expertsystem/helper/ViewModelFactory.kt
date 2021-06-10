@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.krismanpratama.expertsystem.repository.SispakRepository
+import com.krismanpratama.expertsystem.ui.basispengetahuan.AddBasisPengetahuanViewModel
+import com.krismanpratama.expertsystem.ui.basispengetahuan.BasisPengetahuanViewModel
 import com.krismanpratama.expertsystem.ui.gejala.AddGejalaViewModel
 import com.krismanpratama.expertsystem.ui.gejala.GejalaViewModel
 import com.krismanpratama.expertsystem.ui.penyakit.AddPenyakitViewModel
 import com.krismanpratama.expertsystem.ui.penyakit.PenyakitViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 class ViewModelFactory private constructor(private val mSispakRepository: SispakRepository) : ViewModelProvider.NewInstanceFactory() {
@@ -15,6 +18,7 @@ class ViewModelFactory private constructor(private val mSispakRepository: Sispak
         @Volatile
         private var instance: ViewModelFactory? = null
 
+        @InternalCoroutinesApi
         fun getInstance(context: Context): ViewModelFactory =
             instance ?: synchronized(this) {
                 instance ?: ViewModelFactory(Injection.provideRepository(context)).apply {
@@ -36,6 +40,12 @@ class ViewModelFactory private constructor(private val mSispakRepository: Sispak
             }
             modelClass.isAssignableFrom(AddGejalaViewModel::class.java) -> {
                 return AddGejalaViewModel(mSispakRepository) as T
+            }
+            modelClass.isAssignableFrom(AddBasisPengetahuanViewModel::class.java) -> {
+                return AddBasisPengetahuanViewModel(mSispakRepository) as T
+            }
+            modelClass.isAssignableFrom(BasisPengetahuanViewModel::class.java) -> {
+                return BasisPengetahuanViewModel(mSispakRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

@@ -1,15 +1,20 @@
 package com.krismanpratama.expertsystem.ui.gejala
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.krismanpratama.expertsystem.data.entity.Gejala
 import com.krismanpratama.expertsystem.databinding.ActivityAddGejalaBinding
 import com.krismanpratama.expertsystem.helper.ViewModelFactory
-import com.krismanpratama.expertsystem.ui.gejala.AddGejalaActivity
-import com.krismanpratama.expertsystem.ui.gejala.AddGejalaViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
+
 
 class AddGejalaActivity : AppCompatActivity() {
     companion object {
@@ -29,11 +34,14 @@ class AddGejalaActivity : AppCompatActivity() {
 
     private var isEdit = false
     private var gejala: Gejala? = null
-    private var position = 0
+    private var     position = 0
 
     private lateinit var addGejalaViewModel: AddGejalaViewModel
     private lateinit var activityAddGejalaBinding: ActivityAddGejalaBinding
-
+    private val arrKeyakinan = arrayOf("Pilih Keyakinan","Sangat Yakin","Yakin","Cukup Yakin","Sedikit Yakin","Tidak Tahu","Tidak")
+    private var doubKeyakinan: Double? = null
+    private lateinit var spinner: Spinner
+    @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityAddGejalaBinding = ActivityAddGejalaBinding.inflate(layoutInflater)
@@ -42,22 +50,27 @@ class AddGejalaActivity : AppCompatActivity() {
 
         setupView()
 
-
         activityAddGejalaBinding.buttonSave.setOnClickListener {
             with(activityAddGejalaBinding) {
                 val namaGejala = editNamaGejala.text.toString().trim()
-                val keyakinan = editKeyakinan.text.toString().trim()
+//                val keyakinan = editKeyakinan.text.toString().trim()
 
                 when {
                     namaGejala.isEmpty() -> editNamaGejala.error =
                         "Nama Gejala tidak boleh kosong"
-                    keyakinan.isEmpty() -> editKeyakinan.error =
-                        "Nilai keyakinan tidak boleh kosong"
+//                    keyakinan.isEmpty() -> editKeyakinan.error =
+//                        "Nilai keyakinan tidak boleh kosong"
 
+                    spinner.selectedItem.toString() == "Pilih Keyakinan" || spinner.selectedItem == null-> {
+                        val errorText = spinner.selectedView as TextView
+//                        var errorText = spinner.selectedView
+                        errorText.error = ""
+                        errorText.setTextColor(Color.RED)
+                        errorText.text = "Mohon pilih tingkat keyakinan"
+                    }
                     else -> {
                         gejala?.let {
                             it.namaGejala = namaGejala
-                            it.keyakinan = keyakinan
                         }
                         val intent = Intent().apply {
                             putExtra(EXTRA_GEJALA, gejala)
@@ -80,6 +93,7 @@ class AddGejalaActivity : AppCompatActivity() {
         }
     }
 
+    @InternalCoroutinesApi
     private fun obtainViewModel(activity: AppCompatActivity): AddGejalaViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory).get(AddGejalaViewModel::class.java)
@@ -94,12 +108,13 @@ class AddGejalaActivity : AppCompatActivity() {
                 addGejalaViewModel.setSelectedGejala(gejala!!.id)
                 addGejalaViewModel.getGejala().observe(this, {
                     activityAddGejalaBinding.editNamaGejala.setText(it.namaGejala)
-                    activityAddGejalaBinding.editKeyakinan.setText(it.keyakinan)
+                    setUpSpinner()
                 })
             }
-            AddGejalaActivity.REQUEST_ADD -> {
+            REQUEST_ADD -> {
                 gejala = Gejala()
                 activityAddGejalaBinding.buttonSave.visibility = View.VISIBLE
+                setUpSpinner()
             }
             //Ini update
             else -> {
@@ -108,12 +123,51 @@ class AddGejalaActivity : AppCompatActivity() {
                 addGejalaViewModel.setSelectedGejala(gejala!!.id)
                 addGejalaViewModel.getGejala().observe(this, {
                     activityAddGejalaBinding.editNamaGejala.setText(it.namaGejala)
-                    activityAddGejalaBinding.editKeyakinan.setText(it.keyakinan)
                 })
+                setUpSpinner()
                 activityAddGejalaBinding.buttonSave.visibility = View.VISIBLE
             }
         }
 
+    }
+
+    private fun setUpSpinner(){
+        spinner = activityAddGejalaBinding.mySpinner
+        spinner.adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,arrKeyakinan)
+        activityAddGejalaBinding.mySpinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when(position){
+                    1 -> {
+                        doubKeyakinan = 1.0
+                    }
+                    2 -> {
+                        doubKeyakinan = 0.8
+                    }
+                    3 -> {
+                        doubKeyakinan = 0.6
+                    }
+                    4 ->{
+                        doubKeyakinan = 0.4
+                    }
+                    5 -> {
+                        doubKeyakinan = 0.2
+                    }
+                    6 -> {
+                        doubKeyakinan = 0.0
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+        }
     }
 
 

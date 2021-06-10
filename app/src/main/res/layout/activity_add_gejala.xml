@@ -17,17 +17,30 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="16dp"/>
 
-    <EditText
-        android:id="@+id/edit_keyakinan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:hint="@string/keyakinan"
-        android:inputType="numberDecimal"
+<!--    <EditText-->
+<!--        android:id="@+id/edit_keyakinan"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="64dp"-->
+<!--        android:hint="@string/keyakinan"-->
+<!--        android:inputType="numberDecimal"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.4"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/edit_nama_gejala" />-->
+
+    <Spinner
+        android:id="@+id/mySpinner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="20dp"
+        android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_nama_gejala" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_nama_gejala"/>
 
     <Button
         android:id="@+id/button_save"
@@ -36,7 +49,7 @@
         android:text="SAVE"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_keyakinan"
+        app:layout_constraintTop_toBottomOf="@+id/mySpinner"
         android:layout_marginTop="20dp"
         android:visibility="gone"
         />

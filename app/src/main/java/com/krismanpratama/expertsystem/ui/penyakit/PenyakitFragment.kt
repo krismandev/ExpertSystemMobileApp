@@ -17,6 +17,7 @@ import com.krismanpratama.expertsystem.databinding.FragmentPenyakitBinding
 import com.krismanpratama.expertsystem.helper.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.launch
 
 
@@ -36,6 +37,7 @@ class PenyakitFragment : Fragment() {
         return binding.root
     }
 
+    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListener()
@@ -50,7 +52,7 @@ class PenyakitFragment : Fragment() {
 
     fun setupListener(){
         binding.btnAddPenyakit.setOnClickListener {
-            startActivityForResult(Intent(context,AddPenyakitActivity::class.java).putExtra(AddPenyakitActivity.REQUEST_TYPE,AddPenyakitActivity.REQUEST_ADD),AddPenyakitActivity.REQUEST_ADD)
+            startActivityForResult(Intent(context,AddPenyakitActivity::class.java)  .putExtra(AddPenyakitActivity.REQUEST_TYPE,AddPenyakitActivity.REQUEST_ADD),AddPenyakitActivity.REQUEST_ADD)
         }
 
     }

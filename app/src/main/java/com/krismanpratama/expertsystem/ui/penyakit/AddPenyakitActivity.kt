@@ -9,6 +9,7 @@ import com.krismanpratama.expertsystem.R
 import com.krismanpratama.expertsystem.data.entity.Penyakit
 import com.krismanpratama.expertsystem.databinding.ActivityAddPenyakitBinding
 import com.krismanpratama.expertsystem.helper.ViewModelFactory
+import kotlinx.coroutines.InternalCoroutinesApi
 
 class AddPenyakitActivity : AppCompatActivity() {
 
@@ -34,6 +35,7 @@ class AddPenyakitActivity : AppCompatActivity() {
     private lateinit var addPenyakitViewModel: AddPenyakitViewModel
     private lateinit var activityAddPenyakitBinding: ActivityAddPenyakitBinding
 
+    @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityAddPenyakitBinding = ActivityAddPenyakitBinding.inflate(layoutInflater)
@@ -107,6 +109,7 @@ class AddPenyakitActivity : AppCompatActivity() {
         }
     }
 
+    @InternalCoroutinesApi
     private fun obtainViewModel(activity: AppCompatActivity): AddPenyakitViewModel {
         val factory = ViewModelFactory.getInstance(activity.application)
         return ViewModelProvider(activity, factory).get(AddPenyakitViewModel::class.java)

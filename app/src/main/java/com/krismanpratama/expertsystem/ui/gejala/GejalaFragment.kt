@@ -16,6 +16,7 @@ import com.krismanpratama.expertsystem.helper.ViewModelFactory
 import com.krismanpratama.expertsystem.ui.gejala.AddGejalaActivity
 import com.krismanpratama.expertsystem.ui.gejala.GejalaAdapter
 import com.krismanpratama.expertsystem.ui.gejala.GejalaViewModel
+import kotlinx.coroutines.InternalCoroutinesApi
 import java.util.*
 
 
@@ -34,6 +35,7 @@ class GejalaFragment : Fragment() {
         return binding.root
     }
 
+    @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListener()

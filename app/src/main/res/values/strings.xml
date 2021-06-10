@@ -9,6 +9,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tambah_penyakit">Tambah data Penyakit</string>
+    <string name="tambah_gejala">Tambah data Gejala</string>
     <string name="nama_penyakit">Nama Penyakit</string>
     <string name="penyebab">Penyebab</string>
     <string name="solusi">Solusi</string>

@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpertSystem">
-        <activity android:name=".ui.penyakit.AddPenyakitActivity"></activity>
+        <activity android:name=".ui.basispengetahuan.RulesBasisPengetahuanActivity"></activity>
+        <activity android:name=".ui.basispengetahuan.AddBasisPengetahuanActivity" />
+        <activity android:name=".ui.penyakit.AddPenyakitActivity" />
+        <activity android:name=".ui.gejala.AddGejalaActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

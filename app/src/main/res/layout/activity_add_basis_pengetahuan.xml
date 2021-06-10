@@ -3,28 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".ui.basispengetahuan.AddBasisPengetahuanActivity">
 
-
-<Button
-        android:id="@+id/btn_add_gejala"
-        android:layout_width="379dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/tambah_gejala"
+    <Spinner
+        android:id="@+id/spinnerAddBasisPengetahuan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_gejala"
+        android:id="@+id/rv_rules"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="72dp"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_add_gejala"
-        tools:listitem="@layout/item_gejala" />
+        app:layout_constraintTop_toBottomOf="@id/spinnerAddBasisPengetahuan"
+        tools:listitem="@layout/item_rules" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

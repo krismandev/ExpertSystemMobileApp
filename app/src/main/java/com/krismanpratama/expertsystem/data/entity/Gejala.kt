@@ -16,6 +16,4 @@ data class Gejala(
     @ColumnInfo(name = "nama_gejala")
     var namaGejala: String? = null,
 
-    @ColumnInfo(name = "keyakinan")
-    var keyakinan: Double? = null
 ) : Parcelable
