@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_penyakit"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_penyakit"
         android:title="@string/penyakit" />
 
     <item
@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/navigation_basis_pengetahuan"
-        android:icon="@drawable/ic_notifications_black_24dp"
+        android:icon="@drawable/ic_baseline_rule_24"
         android:title="@string/basis_pengetahuan" />
 
 </menu>

@@ -1,7 +1,10 @@
 package com.krismanpratama.expertsystem.ui.konsultasi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -12,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.krismanpratama.expertsystem.R
 import com.krismanpratama.expertsystem.data.entity.BasisPengetahuanMaster
 import com.krismanpratama.expertsystem.databinding.ActivityKonsultasiBinding
+import com.krismanpratama.expertsystem.helper.LoadingDialog
 import com.krismanpratama.expertsystem.helper.ViewModelFactory
 import kotlinx.coroutines.InternalCoroutinesApi
 
@@ -47,6 +51,9 @@ class KonsultasiActivity : AppCompatActivity() {
         var hasilCF = 0.0
 
         binding.btnLihatHasil.setOnClickListener {
+
+//            val loadingDialog = LoadingDialog(this)
+
             arrCfhe.forEachIndexed lit@{ index, d ->
                 if (index == 0){
                     hasilCF = arrCfhe[index] + arrCfhe[index + 1] * (1.0 - arrCfhe[index])
@@ -58,6 +65,13 @@ class KonsultasiActivity : AppCompatActivity() {
                 }
 
             }
+
+//            loadingDialog.loadingAlertDialog()
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                loadingDialog.dissmissDialog()
+//            },5000)
+
+
             Toast.makeText(this, hasilCF.toString(), Toast.LENGTH_SHORT).show()
         }
 
