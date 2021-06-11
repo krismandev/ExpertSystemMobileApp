@@ -9,6 +9,9 @@ interface PenyakitDao {
     @Insert
     suspend fun addPenyakit(penyakit: Penyakit)
 
+    @Insert
+    suspend fun addListPenyakit(listPenyakit: ArrayList<Penyakit>)
+
     @Update
     suspend fun updatePenyakit(penyakit: Penyakit)
 

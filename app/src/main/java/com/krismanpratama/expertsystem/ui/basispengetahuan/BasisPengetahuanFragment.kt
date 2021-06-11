@@ -38,7 +38,6 @@ class BasisPengetahuanFragment : Fragment() {
 
     @InternalCoroutinesApi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        spinner = binding.spinnerBasisPengetahuan
         super.onViewCreated(view, savedInstanceState)
 
         val factory = ViewModelFactory.getInstance(requireActivity())

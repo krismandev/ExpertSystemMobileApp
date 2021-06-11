@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
-
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/nama_gejala"
@@ -15,14 +13,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinnerKeyakinan"
-        android:layout_width="150dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/keyakinan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:text="Yakin"
         app:layout_constraintStart_toEndOf="@+id/nama_gejala"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg_spinner"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/bobot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(0.8)"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toEndOf="@+id/keyakinan"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

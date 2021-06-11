@@ -48,32 +48,11 @@ class KonsultasiActivity : AppCompatActivity() {
             populateSpinnerBasisPengetahuan()
         })
 
-        var hasilCF = 0.0
-
-        binding.btnLihatHasil.setOnClickListener {
-
-//            val loadingDialog = LoadingDialog(this)
-
-            arrCfhe.forEachIndexed lit@{ index, d ->
-                if (index == 0){
-                    hasilCF = arrCfhe[index] + arrCfhe[index + 1] * (1.0 - arrCfhe[index])
-
-                }else if(index != arrCfhe.size - 1){
-                    hasilCF = hasilCF + arrCfhe[index+1] * (1.0 - hasilCF)
-                }else{
-                    return@lit
-                }
-
-            }
-
-//            loadingDialog.loadingAlertDialog()
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                loadingDialog.dissmissDialog()
-//            },5000)
+        supportActionBar!!.title = "Konsultasi"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
 
 
-            Toast.makeText(this, hasilCF.toString(), Toast.LENGTH_SHORT).show()
-        }
+
 
 
 
@@ -94,13 +73,13 @@ class KonsultasiActivity : AppCompatActivity() {
                 if (position != 0){
                     val basisPengetahuanMaster = spinnerAdapter.getItem(position)
                     setUpRvRules(basisPengetahuanMaster.id)
+                    binding.btnLihatHasil.visibility = View.VISIBLE
                 }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
             }
-
         }
     }
 
@@ -125,11 +104,60 @@ class KonsultasiActivity : AppCompatActivity() {
         })
         viewModel.getBasisPengetahuanWithRules(basisPengetahuanMasterId).observe(this,{
             rulesAdapter.setData(it.rulesBasisPengetahuan)
+
+            viewModel.getPenyakitByPenyakitId(it.basisPengetahuanMaster.penyakitId).observe(this,{penyakit->
+                var hasilCF = 0.0
+                binding.btnLihatHasil.setOnClickListener {
+
+                val loadingDialog = LoadingDialog(this)
+
+                    arrCfhe.forEachIndexed lit@{ index, d ->
+                        if (index == 0){
+                            hasilCF = arrCfhe[index] + arrCfhe[index + 1] * (1.0 - arrCfhe[index])
+
+                        }else if(index != arrCfhe.size - 1){
+                            hasilCF = hasilCF + arrCfhe[index+1] * (1.0 - hasilCF)
+                        }else{
+                            return@lit
+                        }
+
+                    }
+
+                    loadingDialog.loadingAlertDialog()
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        loadingDialog.dissmissDialog()
+                        val cfPercentage = hasilCF * 100
+                        with(binding){
+                            persentase.text = cfPercentage.toString()
+                            penyebabReceived.text = penyakit.penyebab
+                            solusiReceived.text = penyakit.solusi
+
+                            btnLihatHasil.visibility = View.GONE
+                            cf.visibility = View.VISIBLE
+                            persentase.visibility = View.VISIBLE
+                            penyebab.visibility = View.VISIBLE
+                            penyebabReceived.visibility = View.VISIBLE
+                            solusi.visibility = View.VISIBLE
+                            solusiReceived.visibility = View.VISIBLE
+                        }
+                    },5000)
+
+
+                    Toast.makeText(this, hasilCF.toString(), Toast.LENGTH_SHORT).show()
+                }
+            })
+
         })
+
 
         with(binding){
             rvRules.layoutManager = LinearLayoutManager(this@KonsultasiActivity)
             rvRules.adapter = rulesAdapter
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 }

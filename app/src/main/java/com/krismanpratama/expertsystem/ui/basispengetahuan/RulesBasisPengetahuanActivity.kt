@@ -29,6 +29,8 @@ class RulesBasisPengetahuanActivity : AppCompatActivity() {
 
         val adapter = RulesBasisPengetahuanAdapter(this)
 
+        supportActionBar!!.title = "Rules Pakar"
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         val extras = intent.extras
         if (extras != null){
             val basisPengetahuanId = extras.getInt(EXTRA_BASIS_PENGETAHUAN_ID)
@@ -53,4 +55,11 @@ class RulesBasisPengetahuanActivity : AppCompatActivity() {
             binding.namaPenyakitReceived.text = it.namaPenyakit
         })
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
+
 }

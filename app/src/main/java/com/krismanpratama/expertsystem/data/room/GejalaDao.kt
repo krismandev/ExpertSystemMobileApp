@@ -10,6 +10,9 @@ interface GejalaDao {
     @Insert
     suspend fun addGejala(gejala: Gejala)
 
+    @Insert
+    suspend fun addListGejala(listGejala: ArrayList<Gejala>)
+
     @Update
     suspend fun updateGejala(gejala: Gejala)
 

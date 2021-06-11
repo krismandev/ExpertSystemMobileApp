@@ -24,22 +24,21 @@
 
         <Spinner
             android:id="@+id/spinnerBasisPengetahuanKonsultasi"
-            android:background="@drawable/bg_spinner"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_spinner"
             android:spinnerMode="dropdown"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/pilihPenyakit"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintHorizontal_bias="0.144"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pilihPenyakit" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_rules"
             android:layout_width="match_parent"
-            android:layout_height="480dp"
-            android:layout_marginTop="72dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -51,27 +50,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Certainty Factor"
+            android:text="Kepercayaan"
             android:textColor="@color/bg_red"
             android:textSize="20dp"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_lihat_hasil" />
 
+
         <TextView
             android:id="@+id/persentase"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="200dp"
             android:text="96%"
             android:textColor="@color/bg_red"
             android:textSize="20dp"
-            android:visibility="gone"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_lihat_hasil" />
-
+            app:layout_constraintHorizontal_bias="0.168"
+            app:layout_constraintStart_toEndOf="@+id/cf"
+            app:layout_constraintTop_toBottomOf="@+id/btn_lihat_hasil" />
 
         <TextView
             android:id="@+id/penyebab"
@@ -124,8 +123,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lihat Hasil"
+            android:layout_margin="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rv_rules" />
 

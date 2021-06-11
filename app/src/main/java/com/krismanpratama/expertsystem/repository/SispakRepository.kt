@@ -6,6 +6,7 @@ import com.krismanpratama.expertsystem.data.room.BasisPengetahuanMasterDao
 import com.krismanpratama.expertsystem.data.room.GejalaDao
 import com.krismanpratama.expertsystem.data.room.PenyakitDao
 import com.krismanpratama.expertsystem.data.room.SispakDB
+import com.krismanpratama.expertsystem.helper.DataDummy
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -121,6 +122,26 @@ class SispakRepository(private val db: SispakDB) {
     fun updateRulesByGejalaId(rulesBasisPengetahuan: RulesBasisPengetahuan){
         CoroutineScope(Dispatchers.IO).launch {
             mBasisPengetahuanMasterDao.updateRulesByGejalaId(rulesBasisPengetahuan)
+        }
+    }
+
+    fun generateListPenyakit(){
+        val listPenyakit = ArrayList<Penyakit>()
+        val generatePenyakit = DataDummy.generateDummyPenyakit()
+
+        listPenyakit.addAll(generatePenyakit)
+        CoroutineScope(Dispatchers.IO).launch {
+            mPenyakitDao.addListPenyakit(listPenyakit)
+        }
+    }
+
+    fun generateListGejala(){
+        val listGejala = ArrayList<Gejala>()
+        val generateGejala = DataDummy.generateDummyGejala()
+
+        listGejala.addAll(generateGejala)
+        CoroutineScope(Dispatchers.IO).launch {
+            mGejalaDao.addListGejala(listGejala)
         }
     }
 }
