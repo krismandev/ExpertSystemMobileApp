@@ -3,19 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_penyakit">
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.krismanpratama.expertsystem.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_penyakit"
         android:name="com.krismanpratama.expertsystem.ui.penyakit.PenyakitFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_penyakit" />
 
     <fragment
         android:id="@+id/navigation_gejala"
         android:name="com.krismanpratama.expertsystem.ui.gejala.GejalaFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_gejala" />
 
     <fragment
         android:id="@+id/navigation_basis_pengetahuan"

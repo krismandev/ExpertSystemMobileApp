@@ -8,6 +8,8 @@ import com.krismanpratama.expertsystem.ui.basispengetahuan.AddBasisPengetahuanVi
 import com.krismanpratama.expertsystem.ui.basispengetahuan.BasisPengetahuanViewModel
 import com.krismanpratama.expertsystem.ui.gejala.AddGejalaViewModel
 import com.krismanpratama.expertsystem.ui.gejala.GejalaViewModel
+import com.krismanpratama.expertsystem.ui.home.HomeViewModel
+import com.krismanpratama.expertsystem.ui.konsultasi.KonsultasiViewModel
 import com.krismanpratama.expertsystem.ui.penyakit.AddPenyakitViewModel
 import com.krismanpratama.expertsystem.ui.penyakit.PenyakitViewModel
 import kotlinx.coroutines.InternalCoroutinesApi
@@ -46,6 +48,12 @@ class ViewModelFactory private constructor(private val mSispakRepository: Sispak
             }
             modelClass.isAssignableFrom(BasisPengetahuanViewModel::class.java) -> {
                 return BasisPengetahuanViewModel(mSispakRepository) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                return HomeViewModel(mSispakRepository) as T
+            }
+            modelClass.isAssignableFrom(KonsultasiViewModel::class.java) -> {
+                return KonsultasiViewModel(mSispakRepository) as T
             }
         }
         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")

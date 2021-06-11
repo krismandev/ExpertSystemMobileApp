@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExpertSystem">
-        <activity android:name=".ui.basispengetahuan.RulesBasisPengetahuanActivity"></activity>
+        <activity android:name=".ui.konsultasi.KonsultasiActivity"></activity>
+        <activity android:name=".ui.basispengetahuan.RulesBasisPengetahuanActivity" />
         <activity android:name=".ui.basispengetahuan.AddBasisPengetahuanActivity" />
         <activity android:name=".ui.penyakit.AddPenyakitActivity" />
         <activity android:name=".ui.gejala.AddGejalaActivity" />

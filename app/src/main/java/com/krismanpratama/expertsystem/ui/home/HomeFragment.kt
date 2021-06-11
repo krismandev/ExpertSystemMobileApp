@@ -1,5 +1,6 @@
 package com.krismanpratama.expertsystem.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,36 +11,38 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.krismanpratama.expertsystem.R
 import com.krismanpratama.expertsystem.databinding.FragmentHomeBinding
+import com.krismanpratama.expertsystem.helper.ViewModelFactory
+import com.krismanpratama.expertsystem.ui.konsultasi.KonsultasiActivity
+import kotlinx.coroutines.InternalCoroutinesApi
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var viewModel: HomeViewModel
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    @InternalCoroutinesApi
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val factory = ViewModelFactory.getInstance(requireActivity())
+        viewModel = ViewModelProvider(this,factory)[HomeViewModel::class.java]
+        setUpListener()
+    }
+
+    private fun setUpListener() {
+        binding.btnMulaiKonsultasi.setOnClickListener {
+            val intent = Intent(requireContext(),KonsultasiActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
